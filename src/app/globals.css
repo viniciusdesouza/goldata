@@ -74,3 +74,29 @@
       @apply bg-background text-foreground;
     }
   }
+  /* Destaques para o calendário */
+
+.calendar-selected {
+  background-color: #2563eb !important;   /* Azul preenchido */
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 9999px !important;
+  border: none !important;
+  box-shadow: 0 1px 3px #0001;
+}
+
+.calendar-today {
+  border: 1.5px solid #93c5fd !important; /* Azul claro */
+  background-color: #fff !important;
+  color: #2563eb !important;
+  font-weight: 700;
+  border-radius: 9999px !important;
+}
+
+.calendar-hover:not(.calendar-selected):not(.calendar-today) {
+  background-color: #e0e7ff !important;   /* Azul lilás sutil */
+  color: #1e40af !important;
+  border-radius: 9999px !important;
+  /* Suavidade ao passar o mouse */
+  transition: background 0.15s, color 0.15s;
+}
