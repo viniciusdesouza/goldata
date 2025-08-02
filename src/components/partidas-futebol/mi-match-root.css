@@ -1,0 +1,36 @@
+.mi-match-root, .mi-match-root * {
+  all: unset;
+  all: revert; /* Para navegadores modernos, remove heranças agressivas */
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+  /* Garante display block/flex padrão */
+}
+
+.mi-match-root {
+  /* Garante layout idêntico ao do site */
+  background: var(--card-bg, #fff);
+  border-radius: 1rem;
+  box-shadow: 0 0 6px #0001;
+  margin: 2.5em 0;
+  max-width: 680px;
+  width: 100%;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible;
+  /* Remove qualquer margin herdada do artigo */
+}
+
+.mi-match-root .mi-list-container {
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  width: 100% !important;
+  padding: 12px 0 8px 0 !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: visible !important;
+}

@@ -1,0 +1,255 @@
+/* Container padrão para cards/tabs */
+.tab-content-outer {
+  border: 1.5px solid #e4e6eb;
+  background: #fafbfc;
+  border-radius: 16px;
+  box-shadow: 0 1.5px 8px 0 #2021250b;
+  padding: 20px 16px 18px 16px;
+  max-width: 850px;
+  margin: 16px auto 0 auto;
+  animation: fadeIn 0.4s;
+}
+.dark .tab-content-outer {
+  border: 1.5px solid #262b36;
+  background: #181a1f;
+  box-shadow: 0 1.5px 8px 0 #0002;
+}
+
+/* Título principal dos cards/tabs */
+.tab-content-title {
+  font-weight: 800;
+  color: #204070;
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
+  text-align: center;
+  font-size: 15px;
+}
+.dark .tab-content-title {
+  color: #c8e1ff;
+}
+
+/* Linha de loading/erro/empty */
+.tab-content-state {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6c7382;
+  padding: 36px 0;
+}
+.dark .tab-content-state {
+  color: #a0adc0;
+}
+
+/* Item de lista genérico */
+.tab-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Borda e fundo de itens internos (linhas, boxes) */
+.tab-list-item {
+  background: #fff;
+  border-radius: 13px;
+  border: 1px solid #e4e6eb;
+  box-shadow: 0 0.5px 2.5px 0 #2021250a;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dark .tab-list-item {
+  background: #232530;
+  border: 1px solid #262b36;
+  box-shadow: 0 1px 4px 0 #0004;
+}
+
+/* --- Times e logos --- */
+.tab-team-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 76px;
+  max-width: 90px;
+}
+.tab-team-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #e4e6eb;
+  background: #fff;
+}
+.tab-team-name {
+  font-size: 15px;
+  margin-top: 4px;
+  color: #22304a;
+  font-weight: 600;
+  max-width: 90px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dark .tab-team-logo {
+  border: 1px solid #262b36;
+  background: #21222a;
+}
+.dark .tab-team-name {
+  color: #d1d8ea;
+}
+
+/* --- Badge/placar (H2H e outros) --- */
+.tab-score-badge {
+  min-width: 27px;
+  padding: 2px 8px;
+  font-size: 1rem;
+  border-radius: 7px;
+  border: 1.5px solid #e4e6eb;
+  background: #f6f7fa;
+  color: #334155;
+  font-weight: 700;
+  text-align: center;
+  transition: background 0.15s, color 0.15s, border 0.15s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.tab-score-badge--winner {
+  background: #2a4e92;
+  color: #fff;
+  border: 1.5px solid #2a4e92;
+}
+.tab-score-badge--draw {
+  background: #e0e6ef;
+  color: #2a4e92;
+  border: 1.5px solid #b7c0ce;
+}
+.dark .tab-score-badge {
+  background: #232530;
+  color: #b7bbc7;
+  border: 1.5px solid #262b36;
+}
+.dark .tab-score-badge--winner {
+  background: #234077;
+  color: #fff;
+  border: 1.5px solid #234077;
+}
+.dark .tab-score-badge--draw {
+  background: #23314a;
+  color: #8bb0f6;
+  border: 1.5px solid #26364a;
+}
+
+/* Placar "x" */
+.tab-score-x {
+  font-weight: 800;
+  color: #204070;
+  font-size: 18px;
+  margin: 0 4px;
+}
+.dark .tab-score-x {
+  color: #8bb0f6;
+}
+
+/* --- Estatísticas e tabelas --- */
+.tab-stat-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #204070;
+}
+.dark .tab-stat-label {
+  color: #8bb0f6;
+}
+.tab-stat-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #22304a;
+}
+.dark .tab-stat-value {
+  color: #d1d8ea;
+}
+
+.tab-stat-bar {
+  transition: width 0.3s;
+  height: 0.3rem;
+  border-radius: 7px;
+  background: #e0e6ef;
+}
+.tab-stat-bar--home {
+  background: #2a4e92;
+}
+.tab-stat-bar--away {
+  background: #e0e6ef;
+}
+.dark .tab-stat-bar {
+  background: #23314a;
+}
+.dark .tab-stat-bar--home {
+  background: #234077;
+}
+.dark .tab-stat-bar--away {
+  background: #26364a;
+}
+
+/* --- Odds e probabilidades --- */
+.tab-odd-badge {
+  font-size: 0.9rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1.5px solid #b7c0ce;
+  background: #e0e6ef;
+  color: #2a4e92;
+  font-weight: 700;
+}
+.tab-odd-badge--main {
+  background: #2a4e92;
+  color: #fff;
+  border: 1.5px solid #2a4e92;
+}
+.dark .tab-odd-badge {
+  background: #23314a;
+  color: #8bb0f6;
+  border: 1.5px solid #26364a;
+}
+.dark .tab-odd-badge--main {
+  background: #234077;
+  color: #fff;
+  border: 1.5px solid #234077;
+}
+
+/* --- Tabela de classificação --- */
+.tab-standings-row {
+  font-size: 14px;
+  border-radius: 9px;
+  padding: 7px 10px;
+  border: 1px solid #e4e6eb;
+  background: #fff;
+}
+.dark .tab-standings-row {
+  border: 1px solid #262b36;
+  background: #232530;
+}
+
+.tab-standings-row--highlight {
+  background: #e0e6ef;
+  border-color: #2a4e92;
+}
+.dark .tab-standings-row--highlight {
+  background: #22304a;
+  border-color: #8bb0f6;
+}
+
+/* --- Outros --- */
+.tab-aux-text {
+  color: #6c7382;
+  font-size: 15px;
+}
+.dark .tab-aux-text {
+  color: #a0adc0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: none;}
+}

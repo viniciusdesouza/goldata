@@ -1,0 +1,124 @@
+.club-heart-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef2f2;         /* red-50 */
+  color: #dc2626;              /* red-600 */
+  border: 1.5px solid #fee2e2; /* red-100 (substituída via style inline) */
+  border-radius: 999px;
+  font-size: 0.89rem;
+  font-weight: 600;
+  padding: 4px 12px 4px 9px;
+  cursor: pointer;
+  min-width: 0;
+  min-height: 26px;
+  height: 26px;
+  letter-spacing: 0.01em;
+  box-shadow: none;
+  outline: none;
+  transition: background 0.18s, color 0.18s, border-color 0.14s;
+}
+
+.club-heart-btn .club-heart-icon {
+  margin-left: 3px;
+  color: #f87171;
+  width: 1em;
+  height: 1em;
+  stroke-width: 1.5;
+  fill: none;
+  transition: color 0.15s, fill 0.15s;
+}
+
+.club-heart-btn:hover,
+.club-heart-btn:focus-visible {
+  background: #fee2e2;       /* red-100 */
+  color: #b91c1c;            /* red-800 */
+}
+.club-heart-btn:hover .club-heart-icon,
+.club-heart-btn:focus-visible .club-heart-icon {
+  color: #b91c1c;
+}
+
+.club-heart-btn.pinned {
+  background: #fee2e2;       /* red-100 */
+  color: #dc2626;            /* red-600 */
+  font-weight: 700;
+}
+.club-heart-btn.pinned .club-heart-icon {
+  color: #f87171;
+  fill: #fecaca;             /* red-200 */
+}
+
+/* Só ícone (compacto, sidebar) */
+.club-heart-icon-btn {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1.5px solid #fee2e2; /* red-100 (substituída via style inline) */
+  border-radius: 999px;
+  padding: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  transition: background 0.18s, color 0.18s, border-color 0.14s;
+}
+.club-heart-icon-btn .club-heart-icon {
+  margin-left: 0;
+  color: #f87171;
+  fill: none;
+  width: 0.95em;
+  height: 0.95em;
+}
+.club-heart-icon-btn:hover,
+.club-heart-icon-btn:focus-visible {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.club-heart-icon-btn:hover .club-heart-icon,
+.club-heart-icon-btn:focus-visible .club-heart-icon {
+  color: #b91c1c;
+}
+.club-heart-icon-btn.pinned {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.club-heart-icon-btn.pinned .club-heart-icon {
+  color: #f87171;
+  fill: #fecaca;
+}
+
+/* Dark mode para ambos */
+.dark .club-heart-btn,
+.dark .club-heart-icon-btn {
+  background: #2a1316;
+  color: #fca5a5;
+}
+.dark .club-heart-btn .club-heart-icon,
+.dark .club-heart-icon-btn .club-heart-icon {
+  color: #fca5a5;
+  fill: none;
+}
+.dark .club-heart-btn:hover,
+.dark .club-heart-btn:focus-visible,
+.dark .club-heart-icon-btn:hover,
+.dark .club-heart-icon-btn:focus-visible {
+  background: #3f1c21;
+  color: #fb7185;
+}
+.dark .club-heart-btn:hover .club-heart-icon,
+.dark .club-heart-btn:focus-visible .club-heart-icon,
+.dark .club-heart-icon-btn:hover .club-heart-icon,
+.dark .club-heart-icon-btn:focus-visible .club-heart-icon {
+  color: #fb7185;
+}
+.dark .club-heart-btn.pinned,
+.dark .club-heart-icon-btn.pinned {
+  background: #3f1c21;
+  color: #fca5a5;
+}
+.dark .club-heart-btn.pinned .club-heart-icon,
+.dark .club-heart-icon-btn.pinned .club-heart-icon {
+  color: #fca5a5;
+  fill: #fca5a5;
+}

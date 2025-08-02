@@ -1,0 +1,236 @@
+.mi-matchitem-list {
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border-radius: 18px;
+  border: 1.5px solid hsl(var(--border));
+  box-shadow: 0 2px 10px #0002;
+  padding: 0 0 14px 0;
+  margin: 0.8rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: background 0.17s, border-color 0.16s;
+}
+
+.mi-matchitem-list-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 18px 2px 18px;
+  border-radius: 18px 18px 0 0;
+  background: inherit;
+}
+
+.mi-matchitem-league {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.mi-league-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  object-fit: contain;
+  background: hsl(var(--muted));
+  margin-right: 2px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+.mi-league-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.mi-league-link {
+  color: hsl(var(--primary));
+  font-weight: bold;
+  font-size: 1.11rem;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mi-league-link:hover { text-decoration: underline; }
+
+.mi-round {
+  background: hsl(var(--muted));
+  color: #18181b;
+  font-size: .92rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  padding: 2px 9px;
+  margin-left: 8px;
+  border: 1px solid #18181b;
+}
+.dark .mi-round {
+  background: #23272e;
+  color: #f3f4f6;
+  border: 1px solid #f3f4f6;
+}
+
+.mi-date-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.97rem;
+  color: #666;
+  margin-top: 2px;
+}
+.mi-date {
+  font-size: 0.97rem;
+  color: #444;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.dark .mi-date {
+  color: #cbd5e1;
+}
+
+.mi-fav-btn-list {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  margin-top: 0;
+  transition: transform 0.12s;
+}
+.mi-fav-btn-list.favorito {
+  transform: scale(1.11);
+}
+
+.mi-matchitem-list-info {
+  padding: 0 20px 0 20px;
+  margin: 12px 0 2px 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mi-matchitem-info-label {
+  font-weight: 600;
+  color: #444;
+  font-size: .95rem;
+  display: inline-flex;
+  align-items: center;
+  opacity: .89;
+  min-width: 92px;
+}
+.dark .mi-matchitem-info-label { color: #cbd5e1; }
+.mi-matchitem-info-value {
+  font-size: .95rem;
+  color: #222;
+  font-weight: 500;
+}
+.dark .mi-matchitem-info-value { color: #f4f4f5; }
+
+.mi-matchitem-list-teams {
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+.mi-matchitem-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mi-team-list-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  gap: 3px;
+}
+.mi-team-logo-list {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: hsl(var(--muted));
+  box-shadow: 0 1.5px 6px #0001;
+}
+.mi-team-list-name {
+  color: #1e293b;
+  font-size: 1.01rem;
+  font-weight: 700;
+  max-width: 110px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dark .mi-team-list-name { color: #e2e8f0; }
+
+.mi-matchitem-score-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+.mi-score-number-list {
+  font-size: 2.22rem;
+  font-weight: 800;
+  line-height: 1;
+  font-family: 'Roboto Mono', 'Menlo', monospace;
+  color: #111;
+  letter-spacing: 1.8px;
+}
+.dark .mi-score-number-list {
+  color: #fff;
+}
+.mi-score-sep-list {
+  font-size: 1.44rem;
+  color: #64748b;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.mi-goals-row-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 0 30px;
+  margin: 10px 0 0 0;
+}
+.mi-goals-side-list {
+  flex: 1;
+}
+
+.mi-tabs-list {
+  margin: 10px 0 0 0;
+  padding-bottom: 2px;
+  font-size: 0.97rem;
+}
+
+@media (min-width: 500px) {
+  .mi-matchitem-list-teams {
+    flex-direction: row;
+    gap: 22px;
+  }
+  .mi-matchitem-score-list {
+    flex-direction: column;
+    gap: 1px;
+    margin: 0 10px;
+  }
+  .mi-score-sep-list {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .mi-matchitem-list-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .mi-goals-row-list {
+    padding-left: 8px;
+    padding-right: 8px;
+    gap: 10px;
+  }
+}

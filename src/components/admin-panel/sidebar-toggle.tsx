@@ -1,29 +1,13 @@
-import { ChevronLeft } from "lucide-react";
+"use client";
+import { MenuCustom } from "@/components/admin-panel/menu-custom";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-
-interface SidebarToggleProps {
-  isOpen: boolean | undefined;
-  setIsOpen?: () => void;
-}
-
-export function SidebarToggle({ isOpen, setIsOpen }: SidebarToggleProps) {
+export function SidebarToggle() {
   return (
-    <div className="invisible lg:visible absolute top-[12px] -right-[16px] z-20">
-      <Button
-        onClick={() => setIsOpen?.()}
-        className="rounded-md w-8 h-8"
-        variant="outline"
-        size="icon"
-      >
-        <ChevronLeft
-          className={cn(
-            "h-4 w-4 transition-transform ease-in-out duration-700",
-            isOpen === false ? "rotate-180" : "rotate-0"
-          )}
-        />
-      </Button>
-    </div>
+    <aside
+      className="fixed left-0 top-0 z-40 h-screen flex flex-col sidebar-menu-custom w-[260px] transition-transform duration-300 ease-in-out translate-x-0"
+      style={{ paddingTop: "64px" }}
+    >
+      <MenuCustom />
+    </aside>
   );
 }

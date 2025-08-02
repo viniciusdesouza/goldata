@@ -24,7 +24,7 @@ export default function AccountPage() {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
+              <Link href="/dashboard">Partidas de Futebol</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />

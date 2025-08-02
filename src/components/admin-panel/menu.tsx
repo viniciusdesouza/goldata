@@ -1,148 +1,165 @@
 "use client";
 
 import Link from "next/link";
-import { Ellipsis, LogOut } from "lucide-react";
-import { usePathname } from "next/navigation";
-
+import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { getMenuList } from "@/lib/menu-list";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { CollapseMenuButton } from "@/components/admin-panel/collapse-menu-button";
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider
-} from "@/components/ui/tooltip";
+import React from "react";
+import { IconType } from "react-icons"; // Assuming you use react-icons
 
-interface MenuProps {
-  isOpen: boolean | undefined;
+// --- Definição de Tipos ---
+interface Tab {
+  key: string;
+  label: string;
+  href: string;
+  icon?: IconType;
+  color?: string;
 }
 
-export function Menu({ isOpen }: MenuProps) {
+interface MenuCategory {
+  label: string;
+  icon?: IconType;
+  tabs?: Tab[];
+}
+
+// Constante para a aba principal da home
+const HOME_TAB_KEY = "descobrir";
+
+// Função de filtro agora com tipos definidos
+function filterMenuList(menuList: MenuCategory[]): (MenuCategory | null)[] {
+  const forbiddenLabels = [
+    "Conta", "Perfil", "Usuários", "Minha conta", "Administração", "Admin",
+    "Configurações da conta", "Configurações de usuário", "User", "Account",
+    "Login", "Logout", "Sair", "Entrar", "Registrar",
+  ];
+
+  return menuList
+    .map(category => {
+      const filteredTabs = category.tabs
+        ? category.tabs.filter(
+            tab => !forbiddenLabels.some(label =>
+              (tab.label || "").toLowerCase().includes(label.toLowerCase())
+            )
+          )
+        : undefined;
+
+      if (
+        forbiddenLabels.some(label => (category.label || "").toLowerCase().includes(label.toLowerCase())) ||
+        (category.tabs && filteredTabs && filteredTabs.length === 0 && category.tabs.length > 0)
+      ) {
+        return null;
+      }
+      
+      return { ...category, tabs: filteredTabs };
+    })
+    .filter(Boolean);
+}
+
+export function Menu() {
   const pathname = usePathname();
-  const menuList = getMenuList(pathname);
+  const searchParams = useSearchParams();
+
+  // CORREÇÃO: Adiciona uma verificação para garantir que 'pathname' não é nulo.
+  if (!pathname) {
+    return null; // Retorna nulo ou um componente de loading durante a renderização inicial.
+  }
+
+  const menuListRaw = getMenuList(pathname);
+  const menuList = filterMenuList(menuListRaw);
+
+  const isOnHome = pathname === "/" || pathname === "/home";
+  const partidasTab = searchParams?.get("partidasTab") || "aoVivo";
+  const mainTab = searchParams?.get("tab") || HOME_TAB_KEY;
+  const hash = typeof window !== "undefined" ? window.location.hash : "";
+
+  // Função de clique agora com o tipo 'Tab'
+  function handlePartidasTabClick(
+    tab: Tab,
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) {
+    if (!isOnHome) return;
+    e.preventDefault();
+    const params = new URLSearchParams(window.location.search);
+    params.set("tab", HOME_TAB_KEY);
+    params.set("partidasTab", tab.key);
+    const url = `${window.location.pathname}?${params.toString()}#partidas-tabs`;
+    window.history.replaceState(null, "", url);
+    setTimeout(() => {
+      const el = document.getElementById("partidas-tabs");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 20);
+  }
 
   return (
-    <ScrollArea className="[&>div>div[style]]:!block">
-      <nav className="mt-8 h-full w-full">
-        <ul className="flex flex-col min-h-[calc(100vh-48px-36px-16px-32px)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-2">
-          {menuList.map(({ groupLabel, menus }, index) => (
-            <li className={cn("w-full", groupLabel ? "pt-5" : "")} key={index}>
-              {(isOpen && groupLabel) || isOpen === undefined ? (
-                <p className="text-sm font-medium text-muted-foreground px-4 pb-2 max-w-[248px] truncate">
-                  {groupLabel}
-                </p>
-              ) : !isOpen && isOpen !== undefined && groupLabel ? (
-                <TooltipProvider>
-                  <Tooltip delayDuration={100}>
-                    <TooltipTrigger className="w-full">
-                      <div className="w-full flex justify-center items-center">
-                        <Ellipsis className="h-5 w-5" />
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent side="right">
-                      <p>{groupLabel}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              ) : (
-                <p className="pb-2"></p>
+    <nav className="w-full flex flex-col gap-4 mt-2">
+      {menuList.map(category => {
+        if (!category) return null;
+        return (
+          <div key={category.label} className="mb-2">
+            <div className="px-2 flex items-center gap-2 mb-1">
+              {category.icon && (
+                <category.icon
+                  size={18}
+                  className="text-blue-700 dark:text-blue-300"
+                />
               )}
-              {menus.map(
-                ({ href, label, icon: Icon, active, submenus }, index) =>
-                  !submenus || submenus.length === 0 ? (
-                    <div className="w-full" key={index}>
-                      <TooltipProvider disableHoverableContent>
-                        <Tooltip delayDuration={100}>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant={
-                                (active === undefined &&
-                                  pathname.startsWith(href)) ||
-                                active
-                                  ? "secondary"
-                                  : "ghost"
-                              }
-                              className="w-full justify-start h-10 mb-1"
-                              asChild
-                            >
-                              <Link href={href}>
-                                <span
-                                  className={cn(isOpen === false ? "" : "mr-4")}
-                                >
-                                  <Icon size={18} />
-                                </span>
-                                <p
-                                  className={cn(
-                                    "max-w-[200px] truncate",
-                                    isOpen === false
-                                      ? "-translate-x-96 opacity-0"
-                                      : "translate-x-0 opacity-100"
-                                  )}
-                                >
-                                  {label}
-                                </p>
-                              </Link>
-                            </Button>
-                          </TooltipTrigger>
-                          {isOpen === false && (
-                            <TooltipContent side="right">
-                              {label}
-                            </TooltipContent>
-                          )}
-                        </Tooltip>
-                      </TooltipProvider>
-                    </div>
-                  ) : (
-                    <div className="w-full" key={index}>
-                      <CollapseMenuButton
-                        icon={Icon}
-                        label={label}
-                        active={
-                          active === undefined
-                            ? pathname.startsWith(href)
-                            : active
+              <span className="font-bold text-[15px] tracking-wide text-blue-700 dark:text-blue-300">
+                {category.label}
+              </span>
+            </div>
+
+            {category.tabs && (
+              <ul className="flex flex-col gap-1 ml-3">
+                {category.tabs.map(tab => {
+                  const isPartidas = category.label === "Partidas de Futebol";
+                  const isBlog = category.label === "Artigos & Notícias";
+                  let isActive = false;
+
+                  if (isPartidas) {
+                    isActive =
+                      tab.key === partidasTab &&
+                      mainTab === HOME_TAB_KEY &&
+                      hash.startsWith("#partidas-tabs");
+                  } else if (isBlog) {
+                    const blogTab = searchParams?.get("tab") || "todos";
+                    isActive = tab.key === blogTab && pathname === "/blog";
+                  }
+
+                  let href = tab.href;
+                  if (tab.key === "descobrir") {
+                    href = "/?tab=descobrir";
+                  }
+                  const partidasHref = `/?tab=${HOME_TAB_KEY}&partidasTab=${tab.key}#partidas-tabs`;
+
+                  return (
+                    <li key={tab.key}>
+                      <Link
+                        href={isPartidas ? partidasHref : href}
+                        scroll={false}
+                        onClick={
+                          isPartidas
+                            ? e => handlePartidasTabClick(tab, e)
+                            : undefined
                         }
-                        submenus={submenus}
-                        isOpen={isOpen}
-                      />
-                    </div>
-                  )
-              )}
-            </li>
-          ))}
-          <li className="w-full grow flex items-end">
-            <TooltipProvider disableHoverableContent>
-              <Tooltip delayDuration={100}>
-                <TooltipTrigger asChild>
-                  <Button
-                    onClick={() => {}}
-                    variant="outline"
-                    className="w-full justify-center h-10 mt-5"
-                  >
-                    <span className={cn(isOpen === false ? "" : "mr-4")}>
-                      <LogOut size={18} />
-                    </span>
-                    <p
-                      className={cn(
-                        "whitespace-nowrap",
-                        isOpen === false ? "opacity-0 hidden" : "opacity-100"
-                      )}
-                    >
-                      Sign out
-                    </p>
-                  </Button>
-                </TooltipTrigger>
-                {isOpen === false && (
-                  <TooltipContent side="right">Sign out</TooltipContent>
-                )}
-              </Tooltip>
-            </TooltipProvider>
-          </li>
-        </ul>
-      </nav>
-    </ScrollArea>
+                        className={cn(
+                          "group flex items-center gap-2 px-3 py-2 rounded-md transition-all",
+                          "hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-900 dark:hover:text-blue-300",
+                          "text-[15px] font-medium text-zinc-800 dark:text-zinc-100",
+                          isActive &&
+                            "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-bold"
+                        )}
+                      >
+                        {tab.icon && <tab.icon size={16} color={tab.color} />}
+                        <span className="truncate">{tab.label}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        );
+      })}
+    </nav>
   );
 }

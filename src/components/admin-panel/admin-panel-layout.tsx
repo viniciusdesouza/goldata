@@ -1,38 +1,34 @@
 "use client";
+import React, { useState, useEffect, ReactNode } from "react";
+import { Sidebar } from "./sidebar";
+import { Navbar } from "./navbar";
+import { SheetMenu } from "./sheet-menu";
 
-import { Footer } from "@/components/admin-panel/footer";
-import { Sidebar } from "@/components/admin-panel/sidebar";
-import { useSidebar } from "@/hooks/use-sidebar";
-import { useStore } from "@/hooks/use-store";
-import { cn } from "@/lib/utils";
+interface AdminPanelLayoutProps {
+  children: ReactNode;
+}
 
-export default function AdminPanelLayout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
-  const sidebar = useStore(useSidebar, (x) => x);
-  if (!sidebar) return null;
-  const { getOpenState, settings } = sidebar;
+export default function AdminPanelLayout({ children }: AdminPanelLayoutProps) {
+  const [sheetOpen, setSheetOpen] = useState(false);
+
+  // Fecha o SheetMenu automaticamente ao expandir para lg (desktop)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setSheetOpen(false); // lg breakpoint
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <>
-      <Sidebar />
-      <main
-        className={cn(
-          "min-h-[calc(100vh_-_56px)] bg-zinc-50 dark:bg-zinc-900 transition-[margin-left] ease-in-out duration-300",
-          !settings.disabled && (!getOpenState() ? "lg:ml-[90px]" : "lg:ml-72")
-        )}
-      >
-        {children}
-      </main>
-      <footer
-        className={cn(
-          "transition-[margin-left] ease-in-out duration-300",
-          !settings.disabled && (!getOpenState() ? "lg:ml-[90px]" : "lg:ml-72")
-        )}
-      >
-        <Footer />
-      </footer>
-    </>
+    <div className="flex flex-col bg-white dark:bg-zinc-900 min-h-screen">
+      <Navbar title="Painel Principal" onOpenMenuMobile={() => setSheetOpen(true)} />
+      <SheetMenu open={sheetOpen} onOpenChange={setSheetOpen} />
+      <div className="flex flex-1">
+        <Sidebar />
+        <main className="flex-1 min-w-0">{children}</main>
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,24 @@
+/* Custom scrollbar for sidebar (YouTube style) */
+.yt-scrollbar {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #a1a1aa #f4f4f5;
+}
+.yt-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  background: #f4f4f5;
+}
+.yt-scrollbar::-webkit-scrollbar-thumb {
+  background: #a1a1aa;
+  border-radius: 8px;
+}
+.yt-scrollbar::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+.dark .yt-scrollbar::-webkit-scrollbar-thumb {
+  background: #23272f;
+}
+.dark .yt-scrollbar::-webkit-scrollbar-track {
+  background: #18181b;
+}

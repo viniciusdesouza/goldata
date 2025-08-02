@@ -17,21 +17,22 @@ type SidebarStore = {
 export const useSidebar = create(
   persist<SidebarStore>(
     (set, get) => ({
-      isOpen: true,
+      isOpen: true, // sempre aberto
       isHover: false,
       settings: { disabled: false, isHoverOpen: false },
       toggleOpen: () => {
-        set({ isOpen: !get().isOpen });
+        // não faz nada
       },
       setIsOpen: (isOpen: boolean) => {
-        set({ isOpen });
+        // sempre mantém aberto
+        set({ isOpen: true });
       },
       setIsHover: (isHover: boolean) => {
         set({ isHover });
       },
       getOpenState: () => {
         const state = get();
-        return state.isOpen || (state.settings.isHoverOpen && state.isHover);
+        return true; // sempre aberto
       },
       setSettings: (settings: Partial<SidebarSettings>) => {
         set(

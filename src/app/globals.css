@@ -1,102 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap');
+
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 240 10% 3.9%;
+@layer base {
+  :root {
+    /* MELHORADO: Cores do tema claro mais suaves e com novas variáveis semânticas */
+    --background: 0 0% 100%;                  /* #fff */
+    --foreground: 0 0% 7%;                    /* #111 (Mais suave que preto puro) */
+    --container: 0 0% 100%;                   /* #fff */
+    --container-foreground: 0 0% 7%;          /* #111 */
+    --card: 0 0% 96%;                         /* #f5f5f5 */
+    --card-foreground: 0 0% 7%;               /* #111 */
+    --border: 0 0% 90%;                       /* #e5e5e5 */
+    --primary: 0 0% 7%;                       /* #111 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 98%;                    /* #fafafa */
+    --secondary-foreground: 0 0% 7%;          /* #111 */
+    --muted: 0 0% 94%;                        /* #f0f0f0 */
+    --muted-foreground: 0 0% 40%;             /* #666 */
+    --accent: 216 100% 97%;                   /* #e8f0fe */
+    --accent-foreground: 219 89% 64%;         /* #3ea6ff */
+    --radius: 16px;
+    
+    /* NOVO: Variáveis semânticas para botões e estados */
+    --brand-blue: 221 83% 53%;                /* #2563eb */
+    --warning-bg: 54 96% 87%;                 /* #fef9c3 */
+    --warning-fg: 43 93% 35%;                 /* #a16207 */
+    --warning-border: 45 96% 62%;             /* #fde047 */
 
-      --card: 0 0% 100%;
-      --card-foreground: 240 10% 3.9%;
-
-      --popover: 0 0% 100%;
-      --popover-foreground: 240 10% 3.9%;
-
-      --primary: 240 5.9% 10%;
-      --primary-foreground: 0 0% 98%;
-
-      --secondary: 240 4.8% 95.9%;
-      --secondary-foreground: 240 5.9% 10%;
-
-      --muted: 240 4.8% 95.9%;
-      --muted-foreground: 240 3.8% 46.1%;
-
-      --accent: 240 4.8% 95.9%;
-      --accent-foreground: 240 5.9% 10%;
-
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 240 5.9% 90%;
-      --input: 240 5.9% 90%;
-      --ring: 240 10% 3.9%;
-
-      --radius: 0.5rem;
-    }
-
-    .dark {
-      --background: 240 10% 3.9%;
-      --foreground: 0 0% 98%;
-
-      --card: 240 10% 3.9%;
-      --card-foreground: 0 0% 98%;
-
-      --popover: 240 10% 3.9%;
-      --popover-foreground: 0 0% 98%;
-
-      --primary: 0 0% 98%;
-      --primary-foreground: 240 5.9% 10%;
-
-      --secondary: 240 3.7% 15.9%;
-      --secondary-foreground: 0 0% 98%;
-
-      --muted: 240 3.7% 15.9%;
-      --muted-foreground: 240 5% 64.9%;
-
-      --accent: 240 3.7% 15.9%;
-      --accent-foreground: 0 0% 98%;
-
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 240 3.7% 15.9%;
-      --input: 240 3.7% 15.9%;
-      --ring: 240 4.9% 83.9%;
-    }
+    --rdp-accent-color: #232323 !important;
+    --rdp-background-color: #ededed !important;
+    --rdp-selected-color: #fff !important;
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
+  .dark {
+    /* Cores do tema escuro mantidas, com pequenos ajustes de foreground */
+    --background: 0 0% 9%;                    /* #181818 */
+    --foreground: 0 0% 98%;                   /* #fafafa (Um pouco menos que branco puro) */
+    --container: 0 0% 9%;                     /* #181818 */
+    --container-foreground: 0 0% 98%;
+    --card: 0 0% 13%;                         /* #222 */
+    --card-foreground: 0 0% 98%;
+    --border: 0 0% 18%;                       /* #2d2d2d */
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 13%;                    /* #222 */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 18%;                        /* #2d2d2d */
+    --muted-foreground: 0 0% 63%;             /* #a1a1a1 */
+    --accent: 216 6% 14%;                     /* #232323 */
+    --accent-foreground: 219 89% 85%;         /* #b8dbff */
+    --radius: 16px;
+
+    /* NOVO: Variáveis semânticas para o tema escuro */
+    --brand-blue: 221 83% 63%;                /* Tom mais claro de azul */
+    --warning-bg: 43 93% 15%;                 /* #3a2a02 */
+    --warning-fg: 54 96% 77%;                 /* #fde68a */
+    --warning-border: 45 96% 42%;             /* #ca8a04 */
+
+    --rdp-accent-color: #fafafa !important;
+    --rdp-background-color: #232323 !important;
+    --rdp-selected-color: #232323 !important;
   }
-  /* Destaques para o calendário */
-
-.calendar-selected {
-  background-color: #2563eb !important;   /* Azul preenchido */
-  color: #fff !important;
-  font-weight: 700;
-  border-radius: 9999px !important;
-  border: none !important;
-  box-shadow: 0 1px 3px #0001;
 }
 
-.calendar-today {
-  border: 1.5px solid #93c5fd !important; /* Azul claro */
-  background-color: #fff !important;
-  color: #2563eb !important;
-  font-weight: 700;
-  border-radius: 9999px !important;
+@layer base {
+  html, body {
+    min-height: 100%;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* REMOVIDO: Seção inteira que forçava a cor do texto com !important */
+
+  .external-container {
+    background: hsl(var(--container));
+    border-radius: var(--radius);
+    border: 1.5px solid hsl(var(--border));
+    box-shadow: 0 2px 10px 0 hsl(0 0% 0% / 0.05);
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 2.5rem;
+  }
+  .dark .external-container {
+    box-shadow: 0 2px 18px 0 hsl(0 0% 0% / 0.2);
+  }
+
+  .match-card-inner {
+    background: hsl(var(--card));
+    border-radius: calc(var(--radius) - 4px);
+    padding: 0.75rem 0.5rem;
+    margin: 0.75rem 0.5rem 0.5rem 0.5rem;
+    transition: background 0.2s;
+  }
+
+  .match-tabs-btn {
+    background: transparent;
+    color: hsl(var(--muted-foreground)); /* MELHORADO: Usa cor de texto secundária */
+    border-radius: 8px 8px 0 0;
+    transition: background 0.14s, color 0.14s;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.97rem;
+    font-weight: 500; /* MELHORADO: Um pouco mais de peso */
+  }
+  .match-tabs-btn[aria-selected="true"], .match-tabs-btn.selected {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    font-weight: 600; /* MELHORADO: Destaque para aba ativa */
+  }
+  .match-tabs-btn:hover:not([aria-selected="true"]):not(.selected) {
+    background: hsl(var(--muted));
+    color: hsl(var(--foreground));
+  }
+  
+  .status-badge {
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    padding: 2px 10px;
+    font-weight: 500;
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    letter-spacing: 0;
+    margin-right: 0.25rem;
+  }
+  .status-badge-live {
+    background: #fee2e2;
+    color: #c00;
+    animation: soft-blink 1.5s ease-in-out infinite alternate;
+  }
+  @keyframes soft-blink {
+    from { background-color: #fee2e2; }
+    to { background-color: #fecaca; }
+  }
+
+  .section-title {
+    color: hsl(var(--foreground));
+    font-size: 1.2rem;
+    font-weight: 600; /* MELHORADO: Título com mais destaque */
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+  }
 }
 
-.calendar-hover:not(.calendar-selected):not(.calendar-today) {
-  background-color: #e0e7ff !important;   /* Azul lilás sutil */
-  color: #1e40af !important;
-  border-radius: 9999px !important;
-  /* Suavidade ao passar o mouse */
-  transition: background 0.15s, color 0.15s;
+/* Abas grandes (Explorar / Meus Fixos) */
+.nav-tabs-main {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.25rem auto 1.5rem auto;
+  width: 100%;
+  max-width: 32rem;
+}
+.nav-tab-btn {
+  flex: 1 1 0%;
+  padding: 0.85rem 1rem;
+  font-size: 1.05rem; /* Levemente ajustado */
+  font-weight: 500;
+  border-radius: 1.3rem;
+  border: none;
+  background: hsl(var(--muted)); /* MELHORADO: Usa variável de tema */
+  color: hsl(var(--muted-foreground));
+  transition: all 0.2s ease-out;
+}
+.nav-tab-btn.active {
+  color: #fff;
+  background: hsl(var(--brand-blue)); /* MELHORADO: Usa variável de tema */
+  box-shadow: 0 4px 16px -4px hsl(var(--brand-blue) / 0.4);
+  transform: translateY(-2px) scale(1.03); /* MELHORADO: Animação mais sutil */
+  z-index: 1;
+  font-weight: 600;
+}
+.dark .nav-tab-btn.active {
+    color: hsl(var(--background)); /* Texto escuro no botão claro */
+}
+
+
+/* Botão Fixar/Seguir/Favoritar */
+.btn-fix-entity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.4em 1.1em 0.4em 0.9em;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1.5px solid hsl(var(--border));
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+.btn-fix-entity.active {
+  background: hsl(var(--warning-bg));
+  color: hsl(var(--warning-fg));
+  border-color: hsl(var(--warning-border));
+  box-shadow: 0 2px 12px hsl(var(--warning-border) / 0.3);
+  font-weight: 600;
+}
+.btn-fix-entity:hover:not(.active) {
+  border-color: hsl(var(--muted-foreground));
+  background: hsl(var(--muted));
+}
+.btn-fix-entity:active {
+  transform: scale(0.96);
+}
+
+/* Sidebar dos fixos - destaque e arraste */
+.sidebar-fixos {
+  background: linear-gradient(180deg, hsl(0 0% 100%) 60%, hsl(210 40% 98%) 100%);
+  border-radius: 20px;
+  border: 1.5px solid hsl(var(--border));
+  box-shadow: 0 2px 18px 0 hsl(0 0% 0% / 0.05);
+  padding: 1.2rem 1rem;
+  margin-bottom: 2rem;
+  min-width: 250px;
+  max-width: 340px;
+  transition: all 0.2s ease-in-out;
+}
+.dark .sidebar-fixos {
+  background: linear-gradient(180deg, hsl(220 9% 12%) 60%, hsl(240 5% 13%) 100%);
+  border-color: hsl(var(--border));
+  box-shadow: 0 2px 18px 0 hsl(0 0% 0% / 0.2);
+}
+.sidebar-fixos .fixos-title {
+  font-size: 1.05rem;
+  font-weight: 600; /* MELHORADO: Destaque para o título */
+  color: hsl(var(--foreground));
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.sidebar-fixos ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sidebar-fixos li {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+.sidebar-fixos li a {
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+.sidebar-fixos li a:hover {
+  color: hsl(var(--foreground));
+}
+.sidebar-fixos .fixos-section {
+  margin-bottom: 1.2rem;
+}
+.sidebar-fixos .fixos-tip {
+  font-size: 0.87rem;
+  color: hsl(var(--muted-foreground) / 0.7);
+  margin-top: 1em;
+}
+.sidebar-fixos .dragging {
+  opacity: 0.7;
+  background: hsl(var(--warning-bg));
+}
+/* Adicione esta seção dentro do seu bloco @layer base :root */
+@layer base {
+  :root {
+    /* ...suas variáveis de cor existentes... */
+    
+    /* NOVO: Variáveis de Dimensão do Layout */
+    --navbar-height: 4rem; /* 64px */
+    --sidebar-width-expanded: 15rem; /* 240px */
+    --sidebar-width-collapsed: 5rem; /* 80px */
+  }
+  
+  /* ...resto do seu CSS... */
 }

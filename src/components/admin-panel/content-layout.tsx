@@ -1,15 +1,17 @@
-import { Navbar } from "@/components/admin-panel/navbar";
+import React, { ReactNode } from "react";
 
 interface ContentLayoutProps {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function ContentLayout({ title, children }: ContentLayoutProps) {
   return (
     <div>
-      <Navbar title={title} />
-      <div className="container pt-8 pb-8 px-4 sm:px-8">{children}</div>
+      {/* O Navbar já está no layout principal */}
+      <div className="p-4 sm:p-6 lg:p-8">
+        {children}
+      </div>
     </div>
   );
 }

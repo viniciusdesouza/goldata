@@ -1,0 +1,116 @@
+.champ-pin-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef2f2;         /* red-50 */
+  color: #b91c1c;              /* red-800 */
+  border: 1.5px solid #fee2e2; /* red-100 (substituída via style inline) */
+  border-radius: 999px;
+  font-size: 0.89rem;
+  font-weight: 600;
+  padding: 4px 12px 4px 9px;
+  cursor: pointer;
+  min-width: 0;
+  min-height: 26px;
+  height: 26px;
+  letter-spacing: 0.01em;
+  box-shadow: none;
+  outline: none;
+  transition: background 0.18s, color 0.18s, border-color 0.14s;
+}
+
+.champ-pin-btn .champ-pin-icon {
+  margin-left: 3px;
+  width: 1em;
+  height: 1em;
+  stroke-width: 1.5;
+  transition: color 0.15s, fill 0.15s;
+}
+
+.champ-pin-btn:hover,
+.champ-pin-btn:focus-visible {
+  background: #fee2e2;   /* red-100 */
+  color: #b91c1c;        /* red-800 */
+}
+.champ-pin-btn:hover .champ-pin-icon,
+.champ-pin-btn:focus-visible .champ-pin-icon {
+  color: #b91c1c;
+}
+
+.champ-pin-btn.pinned {
+  background: #fee2e2;   /* red-100 */
+  color: #dc2626;        /* red-600 */
+  font-weight: 700;
+}
+.champ-pin-btn.pinned .champ-pin-icon {
+  color: #dc2626;
+}
+
+.champ-pin-icon-btn {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1.5px solid #fee2e2;
+  border-radius: 999px;
+  padding: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  transition: background 0.18s, color 0.18s, border-color 0.14s;
+}
+.champ-pin-icon-btn .champ-pin-icon {
+  margin-left: 0;
+  width: 0.95em;
+  height: 0.95em;
+}
+.champ-pin-icon-btn:hover,
+.champ-pin-icon-btn:focus-visible {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.champ-pin-icon-btn:hover .champ-pin-icon,
+.champ-pin-icon-btn:focus-visible .champ-pin-icon {
+  color: #b91c1c;
+}
+.champ-pin-icon-btn.pinned {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.champ-pin-icon-btn.pinned .champ-pin-icon {
+  color: #dc2626;
+}
+
+/* Dark mode para ambos */
+.dark .champ-pin-btn,
+.dark .champ-pin-icon-btn {
+  background: #2a1316;
+  color: #fb7185;
+}
+.dark .champ-pin-btn .champ-pin-icon,
+.dark .champ-pin-icon-btn .champ-pin-icon {
+  color: #fb7185;
+  fill: none;
+}
+.dark .champ-pin-btn:hover,
+.dark .champ-pin-btn:focus-visible,
+.dark .champ-pin-icon-btn:hover,
+.dark .champ-pin-icon-btn:focus-visible {
+  background: #3f1c21;
+  color: #fb7185;
+}
+.dark .champ-pin-btn:hover .champ-pin-icon,
+.dark .champ-pin-btn:focus-visible .champ-pin-icon,
+.dark .champ-pin-icon-btn:hover .champ-pin-icon,
+.dark .champ-pin-icon-btn:focus-visible .champ-pin-icon {
+  color: #fb7185;
+}
+.dark .champ-pin-btn.pinned,
+.dark .champ-pin-icon-btn.pinned {
+  background: #3f1c21;
+  color: #fb7185;
+}
+.dark .champ-pin-btn.pinned .champ-pin-icon,
+.dark .champ-pin-icon-btn.pinned .champ-pin-icon {
+  color: #fb7185;
+}

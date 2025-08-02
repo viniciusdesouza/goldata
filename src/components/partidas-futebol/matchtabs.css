@@ -1,0 +1,58 @@
+.tab-btn-yt {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: hsl(220 11% 95%);
+  color: #18181b;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 18px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.16s,
+    color 0.18s,
+    box-shadow 0.18s;
+  cursor: pointer;
+  position: relative;
+  box-shadow: none;
+  flex: 0 0 auto;
+  margin-right: 6px; /* espaçamento mínimo entre as tabs */
+}
+.tab-btn-yt:last-child {
+  margin-right: 0;
+}
+.tab-btn-yt:not(.active):hover,
+.tab-btn-yt:not(.active):focus-visible {
+  background: hsl(220 12% 90%);
+  color: #18181b;
+}
+.tab-btn-yt.active {
+  background: hsl(220 7% 38%);
+  color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+  z-index: 2;
+}
+.dark .tab-btn-yt {
+  background: hsl(220 5% 18%);
+  color: #fff;
+}
+.dark .tab-btn-yt:not(.active):hover,
+.dark .tab-btn-yt:not(.active):focus-visible {
+  background: hsl(220 6% 22%);
+  color: #fff;
+}
+.dark .tab-btn-yt.active {
+  background: hsl(220 7% 38%);
+  color: #fff;
+}
+
+/* Remover o indicador animado (traço embaixo das tabs) */
+.tabs-bar-yt-indicator,
+div[class*="absolute bottom-0 h-1 rounded-full bg-blue-600"],
+div > span.absolute.bottom-0 {
+  display: none !important;
+}

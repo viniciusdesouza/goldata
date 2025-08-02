@@ -1,0 +1,140 @@
+/* --- Wrapper para os containers das abas --- */
+.tabs-container {
+  position: relative; /* Contexto para as setas de scroll */
+}
+
+/* --- Abas Principais (pill container) --- */
+.tabs-main-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.8rem;
+  padding-bottom: 1.1rem;
+}
+.tabs-main-pill {
+  display: flex;
+  background: #fff;
+  border: 1.5px solid hsl(220 6% 82%);
+  border-radius: 999px;
+  box-shadow: 0 2px 12px 0 rgba(33,42,69,0.04);
+  padding: 0.2rem 0.35rem;
+  gap: 6px;
+  overflow-x: auto; /* Permite scroll se necessário */
+}
+.dark .tabs-main-pill {
+  background: #181c20;
+  border-color: #313244;
+}
+.tabs-main-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 1.1rem;
+  font-weight: 700;
+  padding: 0.38rem 1.05rem;
+  font-size: 0.99rem;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  outline: none;
+  transition: background .15s, color .15s, box-shadow .18s, border-color .15s;
+  box-shadow: none;
+  background: transparent;
+  color: hsl(220 9% 36%);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tabs-main-btn:not(.selected) {
+  border: 1.5px solid transparent;
+}
+.tabs-main-btn:not(.selected):hover,
+.tabs-main-btn:not(.selected):focus-visible {
+  background: #e9eef7;
+  color: #2d3c5a;
+}
+.tabs-main-btn.selected,
+.tabs-main-btn[aria-selected="true"] {
+  background: hsl(220 7% 38%);
+  color: #fff;
+  box-shadow: 0 2px 6px 0 rgba(33,42,69,0.05);
+}
+.dark .tabs-main-btn {
+  color: #dbeafe;
+}
+.dark .tabs-main-btn:not(.selected):hover,
+.dark .tabs-main-btn:not(.selected):focus-visible {
+  background: #232b38;
+  color: #f3f5fb;
+}
+.dark .tabs-main-btn.selected,
+.dark .tabs-main-btn[aria-selected="true"] {
+  background: hsl(220 7% 38%);
+  color: #fff;
+}
+
+/* --- Sub-abas (botões individuais com scroll) --- */
+.tabs-sub-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start; /* Alinha à esquerda para scroll */
+  margin-bottom: 0.75rem;
+  padding: 2px 12px; /* Padding horizontal para não colar nas bordas/setas */
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+.tabs-sub-bar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+.tabs-sub-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.9rem;
+  font-weight: 600;
+  font-size: 0.94rem;
+  padding: 0.28rem 1rem;
+  background: hsl(220 11% 95%);
+  border: 1.3px solid #c7d1e3;
+  cursor: pointer;
+  outline: none;
+  transition: background .14s, color .14s, border-color .16s, box-shadow .18s;
+  box-shadow: none;
+  color: #334155;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tabs-sub-btn:not(.selected):hover,
+.tabs-sub-btn:not(.selected):focus-visible {
+  background: #e9eef7;
+  color: #1e40af;
+  border-color: #a6b6d7;
+}
+.tabs-sub-btn.selected,
+.tabs-sub-btn[aria-selected="true"] {
+  background: hsl(220 7% 38%);
+  color: #fff;
+  border-color: hsl(220 7% 38%);
+  box-shadow: 0 1px 6px 0 rgba(33,42,69,0.07);
+}
+.dark .tabs-sub-btn {
+  background: #23262e;
+  color: #e0e7ff;
+  border: 1.3px solid #2d3c5a;
+}
+.dark .tabs-sub-btn:not(.selected):hover,
+.dark .tabs-sub-btn:not(.selected):focus-visible {
+  background: #232b38;
+  color: #60a5fa;
+  border-color: #3b4256;
+}
+.dark .tabs-sub-btn.selected,
+.dark .tabs-sub-btn[aria-selected="true"] {
+  background: hsl(220 7% 38%);
+  color: #fff;
+  border-color: hsl(220 7% 38%);
+}
+
+.scrollbar-hide {
+  scrollbar-width: none !important;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}

@@ -1,0 +1,52 @@
+.player-tabs-bar-btn {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: hsl(220 11% 95%);
+  color: #18181b;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0 18px;
+  height: 36px;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.16s,
+    color 0.18s,
+    box-shadow 0.18s;
+  cursor: pointer;
+  position: relative;
+  box-shadow: none;
+  flex: 0 0 auto;
+  margin-right: 6px;
+  gap: 0.3em;
+}
+.player-tabs-bar-btn:last-child {
+  margin-right: 0;
+}
+.player-tabs-bar-btn:not(.active):hover,
+.player-tabs-bar-btn:not(.active):focus-visible {
+  background: hsl(220 12% 90%);
+  color: #18181b;
+}
+.player-tabs-bar-btn.active {
+  background: hsl(220 7% 38%);
+  color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+  z-index: 2;
+}
+.dark .player-tabs-bar-btn {
+  background: hsl(220 5% 18%);
+  color: #fff;
+}
+.dark .player-tabs-bar-btn:not(.active):hover,
+.dark .player-tabs-bar-btn:not(.active):focus-visible {
+  background: hsl(220 6% 22%);
+  color: #fff;
+}
+.dark .player-tabs-bar-btn.active {
+  background: hsl(220 7% 38%);
+  color: #fff;
+}

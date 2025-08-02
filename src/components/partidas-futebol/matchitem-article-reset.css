@@ -1,0 +1,36 @@
+.match-embed-wrapper {
+  background: var(--card-bg, #fff);
+  border-radius: 1rem;
+  box-shadow: 0 0 6px #0001;
+  padding: 0 0 8px 0;
+  margin: 2.5em 0;
+  max-width: 680px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.match-embed-wrapper :where(.mi-list-container, .mi-list-container *) {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  background: none !important;
+  line-height: 1.18;
+  font-size: 1rem;
+  font-family: inherit;
+}
+.match-embed-wrapper > * {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.match-embed-wrapper .mi-list-info-row,
+.match-embed-wrapper .mi-list-goals-section,
+.match-embed-wrapper .mi-list-tabs {
+  margin-top: 0.4em !important;
+  margin-bottom: 0.2em !important;
+  padding: 0 !important;
+}
+.match-embed-wrapper .mi-list-header,
+.match-embed-wrapper .mi-list-tabs {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

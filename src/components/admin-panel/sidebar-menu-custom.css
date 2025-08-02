@@ -1,0 +1,222 @@
+/* Sidebar estilo YouTube com ajuste para navbar fixa de 64px */
+
+.yt-sidebar {
+  position: fixed;
+  top: 64px; /* começa abaixo da navbar fixa */
+  left: 0;
+  height: calc(100vh - 64px); /* ocupa o restante da tela */
+  width: 240px;
+  background: #fff;
+  border-right: 1px solid #e5e7eb;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width 0.25s cubic-bezier(0.77,0,0.175,1);
+}
+.dark .yt-sidebar {
+  background: #18181b;
+  border-color: #23272f;
+}
+
+.yt-sidebar-menu-custom {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.yt-sidebar-nav {
+  flex: 1 1 0;
+  padding: 12px 0 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.yt-sidebar-category {
+  margin-bottom: 12px;
+}
+
+/* Adiciona o recuo visual para os botões ficarem menos largos */
+.yt-sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.yt-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  /* padding esquerda/direita menores para efeito "solto" como Youtube */
+  padding: 7px 14px 7px 22px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #18181b;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background 0.16s, color 0.18s, box-shadow 0.18s;
+  min-height: 40px;
+  background: hsl(220 11% 95%);
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  margin-bottom: 2px;
+  box-shadow: none;
+  border: none;
+  width: calc(100% - 20px); /* deixa botão mais estreito que a sidebar */
+  margin-left: 10px;         /* centraliza o botão dentro da sidebar */
+}
+.yt-sidebar-link:last-child {
+  margin-bottom: 0;
+}
+.yt-sidebar-link:not(.active):hover,
+.yt-sidebar-link:not(.active):focus-visible {
+  background: hsl(220 12% 90%);
+  color: #18181b;
+}
+.yt-sidebar-link.active,
+.yt-sidebar-link[aria-selected="true"] {
+  background: hsl(220 7% 38%);
+  color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+  z-index: 2;
+}
+.dark .yt-sidebar-link {
+  background: hsl(220 5% 18%);
+  color: #fff;
+}
+.dark .yt-sidebar-link:not(.active):hover,
+.dark .yt-sidebar-link:not(.active):focus-visible {
+  background: hsl(220 6% 22%);
+  color: #fff;
+}
+.dark .yt-sidebar-link.active,
+.dark .yt-sidebar-link[aria-selected="true"] {
+  background: hsl(220 7% 38%);
+  color: #fff;
+}
+
+.yt-sidebar-category-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 6px 22px 2px 22px;
+  color: #23272f;
+  opacity: 0.93;
+  user-select: none;
+  letter-spacing: 0.01em;
+}
+.dark .yt-sidebar-category-label {
+  color: #e5e7eb;
+}
+
+.yt-sidebar-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  min-height: 22px;
+  font-size: 1.2em;
+}
+.yt-sidebar-link-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.yt-sidebar-footer {
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 10px 16px 8px 16px;
+  font-size: 0.93rem;
+  color: #23272f;
+  text-align: center;
+  margin-top: auto;
+}
+.dark .yt-sidebar-footer {
+  background: #18181b;
+  color: #e5e7eb;
+  border-top: 1px solid #23272f;
+}
+.yt-sidebar-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 12px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+.yt-sidebar-footer-links a {
+  color: #23272f;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+  font-size: 0.97em;
+  transition: color 0.15s;
+  padding: 0 3px;
+}
+.yt-sidebar-footer-links a:hover {
+  color: #111;
+}
+.dark .yt-sidebar-footer-links a {
+  color: #e5e7eb;
+}
+.dark .yt-sidebar-footer-links a:hover {
+  color: #fff;
+}
+.yt-sidebar-footer-copyright {
+  font-size: 0.85em;
+  margin-top: 1px;
+  color: #6b7280;
+}
+.dark .yt-sidebar-footer-copyright {
+  color: #a1a1aa;
+}
+
+/* Sheet menu overlay (mobile/slide) */
+.yt-sidebar-sheet-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18,18,20,0.27);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.yt-sidebar-sheet-menu {
+  width: 85vw;
+  max-width: 320px;
+  min-width: 160px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 2px 0 18px 0 #1111;
+  display: flex;
+  flex-direction: column;
+  animation: sidebarSheetSlideIn 0.20s cubic-bezier(0.62,0.02,0.22,0.97);
+}
+.dark .yt-sidebar-sheet-menu {
+  background: #18181b;
+}
+@keyframes sidebarSheetSlideIn {
+  from { transform: translateX(-90px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsivo */
+@media (max-width: 1100px) {
+  .yt-sidebar {
+    width: 190px;
+    min-width: 0;
+  }
+}
+@media (max-width: 700px) {
+  .yt-sidebar {
+    display: none;
+  }
+}
