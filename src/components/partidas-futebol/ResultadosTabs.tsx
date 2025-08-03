@@ -10,7 +10,7 @@ const RESULTADOS_TABS = [
   { key: "campeonatos", label: "Resultados campeonatos", icon: <SearchCheck size={18} strokeWidth={2} /> },
 ];
 
-import TabsBar from "./TabsPartidas"; // Ou importe TabsBar corretamente caso esteja em outro arquivo
+import TabsBar from "./TabsBar";
 
 export default function ResultadosTabs({
   selectedTab,
