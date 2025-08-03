@@ -27,8 +27,6 @@ export function SidebarContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // CORREÇÃO: Adiciona uma verificação para garantir que 'pathname' não é nulo.
-  // Se for nulo (durante a renderização inicial), não renderiza nada.
   if (!pathname) {
     return null;
   }
@@ -37,30 +35,22 @@ export function SidebarContent() {
   const subtabParam = searchParams?.get("subtab");
   const partidasTabParam = searchParams?.get("partidasTab");
 
-  // A chamada agora é segura pois 'pathname' é garantidamente uma string.
   const menu: MenuItem[] = getMenuList(pathname).filter(
     (item: MenuItem) => item.label !== "Usuários" && item.label !== "Conta"
   );
 
   function isActiveTab(tabHref: string): boolean {
     if (!tabHref || !pathname) return false;
-    
-    // Lógica para abas com parâmetros de URL
     if (tabHref.includes("?")) {
       const urlParams = new URLSearchParams(tabHref.split('?')[1]);
       const tab = urlParams.get('tab');
       const subtab = urlParams.get('subtab');
       const partidasTab = urlParams.get('partidasTab');
-
-      // Compara cada parâmetro existente na URL do link com os parâmetros da URL atual
       if (tab && tab !== (tabParam || 'seguindo')) return false;
       if (subtab && subtab !== subtabParam) return false;
       if (partidasTab && partidasTab !== partidasTabParam) return false;
-      
       return true;
     }
-    
-    // Lógica para abas com caminhos simples
     return pathname === tabHref;
   }
 
@@ -69,13 +59,9 @@ export function SidebarContent() {
       {menu.map((item) =>
         item.isCategory ? (
           <div key={item.label} className="yt-sidebar-category">
+            {/* Apenas o texto da categoria, sem ícone */}
             <div className="yt-sidebar-category-label">
-              {item.icon && (
-                <span className="yt-sidebar-category-icon">
-                  <item.icon size={20} />
-                </span>
-              )}
-              <span>{item.label}</span>
+              {item.label}
             </div>
             {item.tabs && (
               <ul className="yt-sidebar-list">

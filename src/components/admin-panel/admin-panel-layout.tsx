@@ -23,7 +23,7 @@ export default function AdminPanelLayout({ children }: AdminPanelLayoutProps) {
 
   return (
     <div className="flex flex-col bg-white dark:bg-zinc-900 min-h-screen">
-      <Navbar title="Painel Principal" onOpenMenuMobile={() => setSheetOpen(true)} />
+      <Navbar title="" onOpenMenuMobile={() => setSheetOpen(true)} />
       <SheetMenu open={sheetOpen} onOpenChange={setSheetOpen} />
       <div className="flex flex-1">
         <Sidebar />
